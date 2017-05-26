@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CINDER | Verification</title>
+	<link rel="icon" type="image/png" href="/img/title.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/register.css">
+</head>
+<body background="/img/dash.jpg">
+
+<img src="/img/register.jpg" class="frame" style="width: 100%;" />
+<header>
+	<a href="#"><img src="/img/logo.png" class="logo" /></a><hr>
+	<h4>VERIFICATION</h4>
+</header>
+<div class="container">
+	<span class="error"><p><%=error%></p></span>
+	<h2>Enter the 4-digit verification number sent to your entered phone number:</h2>
+	
+	<div class="otp">
+	<form method="post">
+	<input type="hidden" name="_csrf" value="<%=csrfToken%>">
+		<input type="number" name="otp" style="width: 15%; margin-left: 43%;" class="form-control">
+		<input type="submit" class="btn btn-primary" id="otpSubmit" style="margin-left: 48%;margin-top: 2%;">
+	</form>
+	</div>
+</div>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		
+	});
+</script>
+</body>
+</html>

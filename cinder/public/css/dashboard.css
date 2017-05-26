@@ -1,0 +1,65 @@
+*{
+	margin:0;
+	padding: 0;
+}
+header{
+	
+	text-align: center;
+}
+header hr{
+	width: 20%;
+	margin-left: 37%;
+	
+}
+header h4{
+	margin-top: -1%;
+}
+img .logo{
+	margin-top: 100px;
+}
+button #logout{
+	float: right;
+	margin:2%;
+}
+#match{
+	float: left;
+	
+	width:40%;
+	margin:2% 15%;
+	text-align: center;
+}
+#onlineUsers{
+	float: right;
+	border:2px solid #ccc;
+	width:20%;
+	margin:5%;
+	text-align: center;
+}
+.chatBox{
+	height: 400px;
+	overflow-y: scroll;
+	border:2px solid #ccc;
+}
+ul{
+	list-style-type: none;
+}
+#submitChat,#inputChat{
+
+}
+h1,h2,h3{
+	text-align: center;
+}
+.from{
+	background-color: #CFD8DC;
+	border-radius:5px;
+	float: right; 
+	width:60%;
+	margin: 2%;
+}
+.to{
+	margin: 2%;
+	background-color: #81D4FA;
+	border-radius:5px;
+	float: left; 
+	width:60%;
+}

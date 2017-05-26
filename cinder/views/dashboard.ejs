@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CINDER | Dashboard</title>
+	<link rel="icon" type="image/png" href="/img/title.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+</head>
+<body background="/img/dash.jpg">
+<form action="/logout" method="get">
+	<button type="submit" class="btn btn-primary" id="logout" style="float: right;margin:.5%;"> Logout</button>
+</form>
+
+<header>
+	<a href="#"><img src="/img/logo.png" class="logo" /></a><hr>
+	<h4 style="margin-left: -5%">DASHBOARD</h4>
+</header>
+<div class="welcome"></div>
+<div id="match">
+	<div class="find">
+		<h2>Find me a match : </h2>
+		<button type="button" class="btn btn-primary" id="matchFind">Find!</button>
+	</div>
+	<div class="found">
+		<span class="noMatch"></span>
+		<span class="matched"></span>
+		<button type="button" class="btn btn-primary" id="matchChat">Chat!</button>
+	</div>
+	<div class="chatBox">
+		<h4>YOU ARE NOW CHATTING WITH</h4>
+		<b><h2 class="chattingWith"></h2></b>
+		<div class="chatLog"></div>
+		<input type="text" class="form-control" id="message" style="width: 80%; margin: 3%;" name="">
+		<button type="submit" class="btn btn-primary" id="submitChat" style="float: right; margin-right:2%;margin-top: -9.5%; "> GO! </button>
+	</div>
+</div>	
+
+
+
+
+<div id="onlineUsers">
+	<h4><b>ONLINE PEOPLE</b></h4>
+	<ul class="users">
+		
+	</ul>
+</div>
+	
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var socket = io();
+		var name;
+		var toName;
+
+		$('.found').hide();
+		$('.chatBox').hide();
+
+		$('#matchFind').click(function(){
+			$('.find').hide();
+
+			$('.found').show();
+			socket.emit('findMatch',{name:name});
+		});
+
+		$('#matchChat').click(function(){
+			$('.find').hide();
+			$('.chatBox').show();
+			$('.found').hide();
+			socket.emit('startChat',{to:toName,from:name});
+		});
+
+		socket.on('start',function(data){
+			socket.emit('newOnline',{name:data.name});
+		});
+
+		socket.on('welcome',function(data){
+			name=data.name;
+			var str='<h2>welcome '+data.name+'</h2>';
+			$('.welcome').append(str);
+		});
+
+		socket.on('updateOnlineUsers',function(data){
+			var arr=JSON.parse(data);
+			$('.users').html('');
+			console.log(arr);
+			for(var key in arr){
+
+				if(arr[key]!=name){
+					var str="<li>"+arr[key]+"</li>";
+					$('.users').append(str);
+				}
+			}
+			
+			$('li').click(function(){
+				var to=$(this).text();
+				console.log(to);
+				toName=to;
+				socket.emit('startChat',{to:toName,from:name});
+				$('.find').hide();
+				$('.chatBox').show();
+				$('.found').hide();
+				
+
+		});
+		});
+
+		socket.on('noMatch',function(){
+			var str='<h3>No match yet. Chat with people who are online right now.</h3>';
+			$('.noMatch').append();
+		});
+
+		socket.on('matched',function(data){
+			var str='<h4>Match is </h4><h3>'+data.name+'</h3>';
+			$('.matched').append(str);
+			toName=data.name;
+		});
+
+		socket.on('chatBox',function(data){
+			$('.find').hide();
+			$('.chatBox').show();
+			$('.found').hide();
+			$('.chattingWith').append(data.to);
+		});
+
+		$('#submitChat').click(function(){
+			var message=$('#message').val();
+			$('#message').val('');
+			socket.emit('newMsg',{from:name,to:toName,msg:message});
+			var str='<div class="from"><p>'+message+'</p></div>';
+			$('.chatLog').append(str);
+		});
+
+		socket.on('message',function(data){
+			var str='<div class="to"><p>'+data.msg+'</p></div>';
+			$('.chatLog').append(str);
+		});
+
+	});
+</script>
+</body>
+</html>		

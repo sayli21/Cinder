@@ -1,0 +1,32 @@
+<!DOCTYPE html>	
+<html>
+<head>
+	<title>CINDER | Forgot Password</title>
+	<link rel="icon" type="image/png" href="/img/title.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+	<style type="'text/css'">
+	.error{
+		color: red;
+		text-align: center;
+	}
+	</style>
+</head>
+<body background="/img/dash.jpg">
+
+<header>
+	<a href="/index"><img src="/img/logo.png" class="logo" /></a><hr style="margin-left: 40%;">
+	<h4>FORGOT PASSWORD</h4>
+</header>
+<div class="container">
+<div class="well">	
+	<h3>Enter the code sent to your Registered Mobile Number below :</h3><hr class="login">
+	<span class="error"><p><%= errror%></p></span>
+	<form class="form-group" method="post">
+		<input type="number" name="fpassword" class="form-control" style="width: 30%; margin: 2%;margin-left: 35%;">
+		<input type="submit" name="submit" class="btn btn-primary" style="margin-left: 47%">
+	</form>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+*{
+	margin:0;
+	padding: 0;
+}
+header{
+	margin: .5%;
+	text-align: center;
+}
+header hr{
+	width: 20%;
+	margin-left: 40%;
+	
+}
+header h4{
+	margin-top: -1%;
+}
+img .logo{
+	margin-top: 100px;
+}
+img .frame{
+	width: 100%;
+
+}
+h2,h1,h3,h4{
+	margin: 2%;
+	text-align: center;
+}
+#container{
+
+
+}
+.footer{
+	position:relative;
+	background-color: red;
+	height:20px;
+	width: 100%;
+	border-top: 2px solid black;
+
+	bottom: 0;
+}
+#register{
+	float: left;
+	width: 45%;
+	
+	margin:0% 2%;
+}
+#info{
+	float: right;
+	width: 45%;
+	
+	margin: 0% 2%;
+}
+#register-info{
+	float: right;
+	width: 45%;
+	border:1px solid #ccc;
+	margin: 0% 2%;
+}
+input[type="submit"]{
+	text-align: center;
+	margin-left: 10%; 
+}
+input[type="text"],input[type="email"],input[type="number"],input[type="password"]{
+	margin-left: 10%;
+	width: 80%;
+}
+
+.error{
+	color: red;
+	text-align: center;
+}

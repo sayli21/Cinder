@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CINDER | Login</title>
+	<link rel="icon" type="image/png" href="/img/title.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/dashboard.css">
+	<style type="text/css">
+		.well{
+			width: 50%;
+			margin-left: 25%;
+			margin-top: 5%;
+		}
+		input[type="text"],input[type="password"]{
+			width: 85%;
+			margin: 2% 5% 2% 7%;
+		}
+		button{
+			margin: 2%;
+			margin-left: 43%;		
+		}
+		h2,h5{
+			text-align: center;
+		}
+		.login{
+			display: block;
+    		height: 1px;
+    		border: 0;
+    		border-top: 1px solid #ddd;
+    		margin: 1em 0;
+    		padding: 0;
+		}
+		.error{
+			color: red;
+			text-align: center;
+		}
+	</style>
+</head>
+<body background="/img/dash.jpg">
+
+<header>
+	<a href="/index"><img src="/img/logo.png" class="logo" /></a><hr style="margin-left: 40%;">
+	<h4>LOGIN</h4>
+</header>
+<div class="container">
+	<div class="well">	
+	<h2>LOGIN</h2><hr class="login">
+	<h5>Not a member ? <a href="/register">REGISTER </a>here.</h5>
+	<span class="error">
+		<p><%= error%></p>
+	</span>
+	<form class="form-group" method="post">
+		<input type="hidden" name="_csrf" value="<%=csrfToken%>">
+		<input type="text" class="form-control" name="name" id="name" placeholder="Nickname">
+		<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+		<button type="submit" class="btn btn-success" id="loginSubmit">LOGIN</button>
+	</form>
+	<hr class="login">
+	<h5>Forgot Password ? <a href="/forgot">CLICK HERE !</a></h5>
+	</div>
+</div>
+	
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var socket = io();
+
+		
+	});
+</script>
+</body>
+</html>
+
+

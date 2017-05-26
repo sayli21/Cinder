@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="icon" href="/img/title.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>CINDER | Welcome</title>
+        <style type="text/css">
+            
+            * {
+                margin: 0;
+                padding: 0;
+            }
+            body {
+                background-color: #000;
+            }
+            .fly-in-text {
+                list-style: none;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translateX(-50%) translateY(-50%);
+            }
+            .fly-in-text li {
+                display: inline-block;
+                margin-right: 50px;
+                font-family: Open Sans, Arial;
+                font-weight: 300;
+                font-size: 4em;
+                color: #fff;
+                opacity: 1;
+                transition: all 2.5s ease;
+            }
+            .fly-in-text li:last-child {
+                margin-right: 0;
+            }
+            .fly-in-text.hidden li {
+                opacity: 99;
+            }
+            .fly-in-text.hidden li:nth-child(1) { transform: translateX(-200px) translateY(-200px); }
+            .fly-in-text.hidden li:nth-child(2) { transform: translateX(20px) translateY(100px); }
+            .fly-in-text.hidden li:nth-child(3) { transform: translateX(-150px) translateY(-80px); }
+            .fly-in-text.hidden li:nth-child(4) { transform: translateX(10px) translateY(-200px); }
+            .fly-in-text.hidden li:nth-child(5) { transform: translateX(-300px) translateY(200px); }
+            .fly-in-text.hidden li:nth-child(6) { transform: translateX(20px) translateY(-20px); }
+            .fly-in-text.hidden li:nth-child(7) { transform: translateX(30px) translateY(200px); }
+            html, body {
+  height: 100%;
+  margin: 0;
+  position: relative;
+  background: #222;
+  font-family: "Open Sans";
+}
+
+#wrap {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+#wrap p {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  color: rgba(255,255,255,.5);
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+}
+
+.ball {
+  pointer-events: none;
+  position: absolute; 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%; 
+  background: gray;
+  animation: implode 1s ease-in-out;
+  animation-fill-mode: both;
+  opacity: .5;
+}
+
+@keyframes implode {
+  100% {transform: scale(0)}
+}
+p{
+	text-align: center;
+	color: white;
+}
+            
+        </style>
+    </head>
+    <body>
+    <div id="wrap"></div>
+        <ul class="fly-in-text hidden">
+            <li>W</li>
+            <li>E</li>
+            <li>L</li>
+            <li>C</li>
+            <li>O</li>
+            <li>M</li>
+            <li>E</li>
+        </ul>
+        <hr>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            
+            $(function() {
+                var mousePos = {};
+
+ function getRandomInt(min, max) {
+   return Math.round(Math.random() * (max - min + 1)) + min;
+ }
+  
+  $(window).mousemove(function(e) {
+    mousePos.x = e.pageX;
+    mousePos.y = e.pageY;
+  });
+  
+  $(window).mouseleave(function(e) {
+    mousePos.x = -1;
+    mousePos.y = -1;
+  });
+  
+  var draw = setInterval(function(){
+    if(mousePos.x > 0 && mousePos.y > 0){
+      
+      var range = 15;
+      
+      var color = "background: rgb("+getRandomInt(0,255)+","+getRandomInt(0,255)+","+getRandomInt(0,255)+");";
+      
+      var sizeInt = getRandomInt(10, 30);
+      size = "height: " + sizeInt + "px; width: " + sizeInt + "px;";
+      
+      var left = "left: " + getRandomInt(mousePos.x-range-sizeInt, mousePos.x+range) + "px;";
+      
+      var top = "top: " + getRandomInt(mousePos.y-range-sizeInt, mousePos.y+range) + "px;"; 
+
+      var style = left+top+color+size;
+      $("<div class='ball' style='" + style + "'></div>").appendTo('#wrap').one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend", function(){$(this).remove();}); 
+    }
+  }, 1);
+                
+                setTimeout(function() {
+                    $('.fly-in-text').removeClass('hidden');
+                }, 500);
+                
+            });
+
+            $(document).click(function(){
+            	window.location.href="http://localhost:3000/index";
+            });
+            
+        </script>
+
+    </body>
+</html>
